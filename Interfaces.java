@@ -254,3 +254,100 @@ public class Interfaces {
         m.meth5();
     }
 }
+
+//Interfaces vs Multiple Inheritance
+
+/**
+ * Interfaces Example in Java
+ * --------------------------
+ * Why Java Interfaces are Better:
+ *   - Avoids the "Diamond Problem" of C++
+ *   - Allows real-world modeling (a class can play multiple roles)
+ *   - Supports polymorphism cleanly
+ *
+ * Real-World Examples:
+ *   1. SmartPhone = Phone + Camera + MusicPlayer
+ *   2. Amphibian  = Terrestrial + Aquatic
+ *   3. Suzuki Car = Car + MusicPlayer
+ */
+
+// ======================== INTERFACES ========================
+interface Phone {
+    void makeCall(String number);
+}
+
+interface Camera {
+    void takePhoto();
+}
+
+interface MusicPlayer {
+    void playMusic(String song);
+}
+
+interface Terrestrial {
+    void walkOnLand();
+}
+
+interface Aquatic {
+    void swimInWater();
+}
+
+interface Carr {
+    void drive();
+}
+
+// ======================== IMPLEMENTATIONS ========================
+class SmartPhone implements Phone, Camera, MusicPlayer {
+    public void makeCall(String number) {
+        System.out.println("Calling " + number + "...");
+    }
+
+    public void takePhoto() {
+        System.out.println("Taking a photo...");
+    }
+
+    public void playMusic(String song) {
+        System.out.println("Playing song: " + song);
+    }
+}
+
+class Amphibian implements Terrestrial, Aquatic {
+    public void walkOnLand() {
+        System.out.println("Walking on land...");
+    }
+
+    public void swimInWater() {
+        System.out.println("Swimming in water...");
+    }
+}
+
+class Suzuki extends Car implements MusicPlayer {
+    public void drive() {
+        System.out.println("Driving Suzuki car...");
+    }
+
+    public void playMusic(String song) {
+        System.out.println("Playing music in Suzuki: " + song);
+    }
+}
+
+// ======================== MAIN ========================
+public class Interfaces {
+    public static void main(String[] args) {
+        // Smartphone example
+        SmartPhone sp = new SmartPhone();
+        sp.makeCall("9876543210");
+        sp.takePhoto();
+        sp.playMusic("Shape of You");
+
+        // Amphibian example
+        Amphibian frog = new Amphibian();
+        frog.walkOnLand();
+        frog.swimInWater();
+
+        // Suzuki Car example
+        Suzuki swift = new Suzuki();
+        swift.drive();
+        swift.playMusic("Despacito");
+    }
+
